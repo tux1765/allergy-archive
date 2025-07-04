@@ -12,10 +12,8 @@
 				/>
 
 				<q-toolbar-title>
-					Quasar App
+					Allergy Archive
 				</q-toolbar-title>
-
-				<div>Quasar v{{ $q.version }}</div>
 			</q-toolbar>
 		</q-header>
 
@@ -32,13 +30,15 @@
 				</q-item-label>
 
 				<q-item
-					to="/"
 					clickable
+					@click="navigateHome"
 				>
 					<q-item-section avatar>
 						<q-icon name="home"/>
 					</q-item-section>
-					<q-item-section>Home</q-item-section>
+					<q-item-section>
+						<q-item-label>Home</q-item-label>
+					</q-item-section>
 				</q-item>
 				<EssentialLink
 					v-for="item in linksList"
@@ -56,7 +56,10 @@
 
 <script setup>
 import {ref} from 'vue'
+import {useRouter} from 'vue-router'
 import EssentialLink from 'components/EssentialLink.vue'
+
+const router = useRouter()
 
 const linksList = ref([
 	{
@@ -105,7 +108,11 @@ const linksList = ref([
 
 const leftDrawerOpen = ref(false)
 
-function toggleLeftDrawer() {
+const navigateHome = () => {
+	router.push('/')
+}
+
+const toggleLeftDrawer = () => {
 	leftDrawerOpen.value = !leftDrawerOpen.value
 }
 </script>
