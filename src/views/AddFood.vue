@@ -1,20 +1,30 @@
 <template>
 	<q-form @submit="submitForm">
 		<q-card flat class="q-pa-md">
-			<q-input
-				v-model="name"
-				label="Name"
-				lazy-rules
-				:rules="[ val => val && val.length > 0 || 'Please enter a name']"
-			/>
-			<q-input
-				v-model="brand"
-				label="Brand"
-			/>
-			<q-input
-				v-model="store"
-				label="Store"
-			/>
+			<q-card-section>
+				<div class="text-h6">Add Food</div>
+			</q-card-section>
+			<q-card-section>
+				<q-input
+					v-model="name"
+					label="Name"
+					lazy-rules
+					:rules="[ val => val && val.length > 0 || 'Please enter a name']"
+				/>
+				<q-input
+					v-model="brand"
+					label="Brand (optional)"
+				/>
+				<q-input
+					v-model="store"
+					label="Store (optional)"
+				/>
+				<q-input
+					v-model="notes"
+					type="textarea"
+					label="Notes (optional)"
+				/>
+			</q-card-section>
 			<q-card-actions>
 				<q-space/>
 				<q-btn
@@ -36,6 +46,7 @@ const $q = useQuasar()
 
 const brand = ref(null)
 const name = ref(null)
+const notes = ref(null)
 const store = ref(null)
 
 const submitForm = () => {
