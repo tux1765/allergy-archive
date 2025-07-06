@@ -5,6 +5,7 @@
   "author": "Tony Palacios <tony@vidterra.com>",
   "private": true,
   "dependencies": {
+    "@capacitor-community/sqlite": "^7.0.1",
     "@capacitor/app": "^7.0.0",
     "@capacitor/cli": "^7.0.0",
     "@capacitor/core": "^7.0.0",
