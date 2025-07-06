@@ -1,0 +1,28 @@
+PODS:
+  - Capacitor (7.4.1):
+    - CapacitorCordova
+  - CapacitorApp (7.0.1):
+    - Capacitor
+  - CapacitorCordova (7.4.1)
+
+DEPENDENCIES:
+  - "Capacitor (from `../../node_modules/@capacitor/ios`)"
+  - "CapacitorApp (from `../../node_modules/@capacitor/app`)"
+  - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
+
+EXTERNAL SOURCES:
+  Capacitor:
+    :path: "../../node_modules/@capacitor/ios"
+  CapacitorApp:
+    :path: "../../node_modules/@capacitor/app"
+  CapacitorCordova:
+    :path: "../../node_modules/@capacitor/ios"
+
+SPEC CHECKSUMS:
+  Capacitor: 78ad32d4b0d9dfa25402eb8b0ac46c2b8a4696b8
+  CapacitorApp: febecbb9582cb353aed037e18ec765141f880fe9
+  CapacitorCordova: 34618fa1b14b6b091fd60a7658f7654044ae8d8a
+
+PODFILE CHECKSUM: 992ab7669c1ab6196b4f4288a1f54126040edd42
+
+COCOAPODS: 1.16.2

@@ -1,0 +1,13 @@
+{
+  "name": "allergy-archive",
+  "version": "0.0.1",
+  "description": "An app to help you track food and prevent allergic reactions",
+  "author": "Tony Palacios <tony@vidterra.com>",
+  "private": true,
+  "dependencies": {
+    "@capacitor/app": "^7.0.0",
+    "@capacitor/cli": "^7.0.0",
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/ios": "^7.4.1"
+  }
+}
