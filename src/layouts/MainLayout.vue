@@ -1,22 +1,29 @@
 <template>
-	<q-layout view="lHh Lpr lFf">
-		<q-header elevated>
+	<q-layout view="lHh Lpr lFf" class="shadow-2 rounded-borders">
+		<q-header bordered class="bg-grey-3 text-primary">
 			<q-toolbar>
-				<q-btn
-					v-if="route.path !== '/'"
-					flat
-					dense
-					round
-					icon="arrow_back_ios"
-					aria-label="Menu"
-					@click="navigateHome"
-				/>
+<!--				<q-btn-->
+<!--					v-if="route.path !== '/'"-->
+<!--					flat-->
+<!--					dense-->
+<!--					round-->
+<!--					icon="arrow_back_ios"-->
+<!--					aria-label="Menu"-->
+<!--					@click="navigateHome"-->
+<!--				/>-->
 
-				<q-toolbar-title>
+				<q-toolbar-title class="text-center text-black">
 					Allergy Archive
 				</q-toolbar-title>
 			</q-toolbar>
 		</q-header>
+
+		<q-footer bordered class="bg-grey-3 text-primary text-black">
+			<q-tabs v-model="tab" indicator-color="transparent">
+				<q-route-tab name="home" label="Home" icon="home" to="/" />
+				<q-route-tab name="add" label="Add Food" icon="add" to="/add"/>
+			</q-tabs>
+		</q-footer>
 
 		<q-page-container>
 			<router-view/>
@@ -25,12 +32,13 @@
 </template>
 
 <script setup>
-import {useRoute, useRouter} from 'vue-router'
+import {ref} from 'vue'
 
-const router = useRouter()
-const route = useRoute()
+// const route = useRoute()
 
-const navigateHome = () => {
-	router.push('/')
-}
+const tab = ref('home')
+
+// const navigateHome = () => {
+// 	router.push('/')
+// }
 </script>
