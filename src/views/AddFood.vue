@@ -39,22 +39,48 @@
 </template>
 
 <script setup>
+import {db} from '../db/db.js'
 import {ref} from 'vue'
 import {useQuasar} from 'quasar'
 
 const $q = useQuasar()
 
-const brand = ref(null)
-const name = ref(null)
-const notes = ref(null)
-const store = ref(null)
+const brand = ref('')
+const name = ref('')
+const notes = ref('')
+const store = ref('')
 
-const submitForm = () => {
-	$q.notify({
-		color: 'green-4',
-		textColor: 'white',
-		icon: 'cloud_done',
-		message: 'Submitted'
-	})
+const resetForm = () => {
+	name.value = ''
+	notes.value = ''
+	brand.value = ''
+	store.value = ''
+}
+
+const submitForm = async () => {
+	try {
+		const id = await db.foods.add({
+			brand: brand.value,
+			name: name.value,
+			notes: notes.value,
+			store: store.value
+		})
+
+		$q.notify({
+			color: 'green-4',
+			textColor: 'white',
+			icon: 'cloud_done',
+			message: `Added ${name.value} to db. Got id: ${id}`
+		})
+		resetForm()
+	} catch (e) {
+		console.log(e)
+		$q.notify({
+			color: 'red-4',
+			textColor: 'white',
+			icon: 'cloud_done',
+			message: `FAILED`
+		})
+	}
 }
 </script>
