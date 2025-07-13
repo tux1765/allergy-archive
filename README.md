@@ -1,6 +1,6 @@
 # Allergy Archive App (allergy-archive)
 
-An app to help you track food and prevent allergic reactions
+An app to help you track foods you know are safe to ingest and prevent allergic reactions
 
 ## Install the dependencies
 ```bash

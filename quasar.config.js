@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 // Configuration for your app
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file
 
 import {defineConfig} from '#q-app/wrappers'
+import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig((/* ctx */) => {
 	return {
@@ -57,7 +59,15 @@ export default defineConfig((/* ctx */) => {
 			// polyfillModulePreload: true,
 			// distDir
 
-			// extendViteConf (viteConf) {},
+			extendViteConf (viteConf) {
+				return {
+					resolve: {
+						alias: {
+							'@': fileURLToPath(new URL('./src', import.meta.url))
+						},
+					}
+				}
+			},
 			// viteVuePluginOptions: {},
 
 			vitePlugins: [

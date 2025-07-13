@@ -1,6 +1,6 @@
 <template>
 	<q-page>
-		<FoodList v-if="foodList.length > 0"  :food-list="foodList"/>
+		<FoodList v-if="foodStore.getAllFoods.length > 0"/>
 		<div v-else>
 			Add Food items to get started!
 		</div>
@@ -8,17 +8,19 @@
 </template>
 
 <script setup>
-import FoodList from '../components/FoodList.vue'
+import FoodList from '@/components/FoodList.vue'
 import {db} from 'src/db/db.js'
+import {useFoodStore} from '@/stores/store.js'
 import {liveQuery} from 'dexie'
-import {onMounted, onUnmounted, ref} from 'vue'
+import {onMounted, onUnmounted} from 'vue'
 
-const foodList = ref([])
+const foodStore = useFoodStore()
+
 let dbSubscription
 onMounted(() => {
 	const foodQuery = liveQuery(() => db.foods.toArray())
 	dbSubscription = foodQuery.subscribe({
-		next: data => {foodList.value = data},
+		next: data => {foodStore.$patch({foods: data})},
 		error: err => {console.error(`Error with loading the database.`, err)}
 	})
 })

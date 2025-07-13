@@ -1,10 +1,10 @@
 <template>
 	<q-list>
 		<div
-			v-for="food in foodList"
+			v-for="food in foodStore.getAllFoodsSortedByIdDesc"
 			:key="food.id"
 		>
-			<q-item clickable>
+			<q-item clickable :to="`/food/${food.id}`">
 				<q-item-section>
 					<q-item-label>{{food.name}}</q-item-label>
 				</q-item-section>
@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-defineProps({
-	foodList: Array
-})
+import {useFoodStore} from '@/stores/store.js'
+
+const foodStore = useFoodStore()
 </script>
