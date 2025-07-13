@@ -1,6 +1,6 @@
 <template>
 	<q-page>
-		{{foodStore.getAllFoods.find(item => item.id === parseInt(id))}}
+		{{foodStore.getFoodById(parseInt(id))}}
 	</q-page>
 </template>
 

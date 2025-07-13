@@ -1,4 +1,5 @@
-import {defineStore, acceptHMRUpdate} from 'pinia'
+import {acceptHMRUpdate, defineStore} from 'pinia'
+import {db} from '@/db/db'
 
 export const useFoodStore = defineStore('foodStore', {
 	state: () => ({
@@ -9,12 +10,18 @@ export const useFoodStore = defineStore('foodStore', {
 		getAllFoods: (state) => state.foods,
 		getAllFoodsSortedByIdDesc: (state) => {
 			return state.foods.sort((a, b) => b.id - a.id)
+		},
+		getFoodById: (state) => {
+			return (foodId) => state.foods.find(food => food.id === foodId)
 		}
 	},
 
 	actions: {
-		updateDb(data) {
-			this.foods = data
+		async addFood({foodObj}) {
+			return db.foods.add({...foodObj})
+		},
+		async deleteFood({foodId}) {
+			return db.foods.where('id').equals(foodId).delete()
 		}
 	}
 })

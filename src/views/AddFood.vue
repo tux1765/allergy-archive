@@ -39,10 +39,11 @@
 </template>
 
 <script setup>
-import {db} from '../db/db.js'
+import {useFoodStore} from 'stores/store.js'
 import {ref} from 'vue'
 import {useQuasar} from 'quasar'
 
+const foodStore = useFoodStore()
 const $q = useQuasar()
 
 const brand = ref('')
@@ -58,29 +59,33 @@ const resetForm = () => {
 }
 
 const submitForm = async () => {
-	try {
-		const id = await db.foods.add({
-			brand: brand.value,
-			name: name.value,
-			notes: notes.value,
-			store: store.value
-		})
+	const foodObj = {
+		brand: brand.value,
+		name: name.value,
+		notes: notes.value,
+		store: store.value,
+		dateAdded: Date.now()
+	}
 
+	try {
+		const id = await foodStore.addFood({foodObj})
+		console.debug('Added food with id:', id)
 		$q.notify({
 			color: 'green-4',
 			textColor: 'white',
 			icon: 'cloud_done',
-			message: `Added ${name.value} to db. Got id: ${id}`
+			message: `Added ${name.value} to archive.`
 		})
-		resetForm()
 	} catch (e) {
-		console.log(e)
+		console.error(e)
 		$q.notify({
 			color: 'red-4',
 			textColor: 'white',
 			icon: 'cloud_done',
-			message: `FAILED`
+			message: `Failed to add item`
 		})
 	}
+
+	resetForm()
 }
 </script>

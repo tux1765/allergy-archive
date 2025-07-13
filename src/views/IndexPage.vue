@@ -1,7 +1,7 @@
 <template>
 	<q-page>
 		<FoodList v-if="foodStore.getAllFoods.length > 0"/>
-		<div v-else>
+		<div v-else class="text-center">
 			Add Food items to get started!
 		</div>
 	</q-page>
