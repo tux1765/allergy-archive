@@ -10,6 +10,7 @@
     "lint": "eslint -c ./eslint.config.js \"./src*/**/*.{js,cjs,mjs,vue}\"",
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
+    "dev:ios": "quasar dev -m capacitor -T ios",
     "build": "quasar build",
     "postinstall": "quasar prepare"
   },
