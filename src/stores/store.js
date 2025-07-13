@@ -1,9 +1,11 @@
 import {acceptHMRUpdate, defineStore} from 'pinia'
 import {db} from '@/db/db'
+import {liveQuery} from 'dexie'
 
 export const useFoodStore = defineStore('foodStore', {
 	state: () => ({
-		foods: []
+		foods: [],
+		dbSubscription: null
 	}),
 
 	getters: {
@@ -17,11 +19,18 @@ export const useFoodStore = defineStore('foodStore', {
 	},
 
 	actions: {
-		async addFood({foodObj}) {
+		addFood({foodObj}) {
 			return db.foods.add({...foodObj})
 		},
-		async deleteFood({foodId}) {
+		deleteFood({foodId}) {
 			return db.foods.where('id').equals(foodId).delete()
+		},
+		initDb() {
+			const foodQuery = liveQuery(() => db.foods.toArray())
+			this.dbSubscription = foodQuery.subscribe({
+				next: data => {this.foods = data},
+				error: err => {console.error(`Error with loading the database.`, err)}
+			})
 		}
 	}
 })

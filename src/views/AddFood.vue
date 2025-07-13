@@ -46,16 +46,16 @@ import {useQuasar} from 'quasar'
 const foodStore = useFoodStore()
 const $q = useQuasar()
 
-const brand = ref('')
-const name = ref('')
-const notes = ref('')
-const store = ref('')
+const brand = ref(null)
+const name = ref(null)
+const notes = ref(null)
+const store = ref(null)
 
 const resetForm = () => {
-	name.value = ''
-	notes.value = ''
-	brand.value = ''
-	store.value = ''
+	name.value = null
+	notes.value = null
+	brand.value = null
+	store.value = null
 }
 
 const submitForm = async () => {
@@ -74,7 +74,9 @@ const submitForm = async () => {
 			color: 'green-4',
 			textColor: 'white',
 			icon: 'cloud_done',
-			message: `Added ${name.value} to archive.`
+			message: `Added ${name.value} to archive.`,
+			timeout: 1500,
+			position: 'center'
 		})
 	} catch (e) {
 		console.error(e)
