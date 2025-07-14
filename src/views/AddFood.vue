@@ -19,6 +19,11 @@
 					v-model="store"
 					label="Store (optional)"
 				/>
+				<q-select
+					v-model="isSafe"
+					label="Is safe to eat (optional)"
+					:options="isSafeOptions"
+				/>
 				<q-input
 					v-model="notes"
 					type="textarea"
@@ -50,12 +55,15 @@ const brand = ref(null)
 const name = ref(null)
 const notes = ref(null)
 const store = ref(null)
+const isSafe = ref(null)
+const isSafeOptions = ['Safe', 'Unsafe', 'Unknown']
 
 const resetForm = () => {
 	name.value = null
 	notes.value = null
 	brand.value = null
 	store.value = null
+	isSafe.value = false
 }
 
 const submitForm = async () => {
@@ -64,7 +72,8 @@ const submitForm = async () => {
 		name: name.value,
 		notes: notes.value,
 		store: store.value,
-		dateAdded: Date.now()
+		dateAdded: Date.now(),
+		isSafe: isSafe.value ?? 'Unknown',
 	}
 
 	try {

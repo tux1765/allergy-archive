@@ -3,6 +3,24 @@
 		<q-card flat>
 			<q-card-section>
 				<div class="text-h6 text-center">{{food.name}}</div>
+				<div
+					v-if="foodItem.isSafe === 'Safe'"
+					class="text-subtitle2 text-center text-green"
+				>
+					This item has been marked safe to ingest.
+				</div>
+				<div
+					v-if="foodItem.isSafe === 'Unsafe'"
+					class="text-subtitle2 text-center text-red"
+				>
+					This item has been marked unsafe to ingest.
+				</div>
+				<div
+					v-if="foodItem.isSafe === 'Unknown'"
+					class="text-subtitle2 text-center text-orange"
+				>
+					This item's safety to ingest is unknown.
+				</div>
 			</q-card-section>
 			<q-card-section>
 				Brand: {{foodItem.brand}}
@@ -33,6 +51,7 @@ const foodItem = computed(() => {
 		name: food.name,
 		brand: food.brand ?? 'None',
 		store: food.store ?? 'None',
+		isSafe: food.isSafe,
 		comments: food.notes ?? 'None'
 	}
 })
