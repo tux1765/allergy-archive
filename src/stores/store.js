@@ -22,6 +22,9 @@ export const useFoodStore = defineStore('foodStore', {
 		addFood({foodObj}) {
 			return db.foods.add({...foodObj})
 		},
+		foodToEdit({foodObj}) {
+			return db.foods.put(foodObj)
+		},
 		deleteFood({foodId}) {
 			return db.foods.where('id').equals(foodId).delete()
 		},

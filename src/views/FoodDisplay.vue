@@ -2,7 +2,7 @@
 	<q-page>
 		<q-card flat>
 			<q-card-section>
-				<div class="text-h6 text-center">{{food.name}}</div>
+				<div class="text-h6 text-center">{{foodItem.name}}</div>
 				<div
 					v-if="foodItem.isSafe === 'Safe'"
 					class="text-subtitle2 text-center text-green"
@@ -32,6 +32,16 @@
 				Comments:
 				<q-input v-model="foodItem.comments" disable borderless/>
 			</q-card-section>
+			<q-card-actions>
+				<q-space />
+				<q-btn
+					icon="pencil"
+					:to="`/edit/${props.id}`"
+					flat
+				>
+					Edit
+				</q-btn>
+			</q-card-actions>
 		</q-card>
 	</q-page>
 </template>
