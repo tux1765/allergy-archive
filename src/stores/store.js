@@ -13,10 +13,10 @@ export const useFoodStore = defineStore('foodStore', {
 	getters: {
 		getAllFoods: (state) => state.foods,
 		getAllFoodsSortedByDateDesc: (state) => {
-			return state.foods.sort((a, b) => b.dateAdded - a.dateAdded)
+			return [...state.foods].sort((a, b) => b.dateAdded - a.dateAdded)
 		},
 		getFoodById: (state) => {
-			return (foodId) => state.foods.find(food => food.id === foodId)
+			return (foodId) => state.foods.find(food => food.id === foodId) ?? {}
 		}
 	},
 

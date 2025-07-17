@@ -13,6 +13,7 @@ if (process.env.DEXIE_CLOUD) {
 		requireAuth: false // optional
 	});
 } else {
+	// TODO: figure out if this is really needed
 	db.version(1).stores({
 		foods: '++id, name, brand, notes, store, isSafe, dateAdded'
 	})

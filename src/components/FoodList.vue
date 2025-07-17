@@ -5,7 +5,10 @@
 			:key="food.id"
 		>
 			<q-slide-item @right="deleteItem({id: food.id})" right-color="red">
-				<template #right>
+				<template
+					v-if="$q.platform.isMobile"
+					#right
+				>
 					<q-icon name="delete"/>
 				</template>
 				<q-item clickable :to="`/food/${food.id}`">

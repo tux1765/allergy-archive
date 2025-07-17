@@ -32,10 +32,15 @@
 				Comments:
 				<q-input v-model="foodItem.comments" disable borderless/>
 			</q-card-section>
-			<q-card-actions>
-				<q-space />
+			<q-card-actions align="around">
 				<q-btn
-					icon="pencil"
+					label="Delete"
+					flat
+					icon="delete"
+					@click="deleteFood"
+				/>
+				<q-btn
+					icon="edit"
 					:to="`/edit/${props.id}`"
 					flat
 				>
@@ -48,6 +53,7 @@
 
 <script setup>
 import {useFoodStore} from 'stores/store.js'
+import {useRouter} from 'vue-router'
 import {computed} from 'vue'
 
 const props = defineProps({
@@ -55,15 +61,26 @@ const props = defineProps({
 })
 
 const foodStore = useFoodStore()
-const id = process.env.DEXIE_CLOUD ? props.id : parseInt(props.id)
-const food = foodStore.getFoodById(id)
+const router = useRouter()
+
+const id = process.env.DEXIE_CLOUD ? props.id : parseInt(props.id) // we need to parse the numbers if not using cloud @ indexing
+
+const food = computed(() => {
+	return foodStore.getFoodById(id)
+})
+
 const foodItem = computed(() => {
 	return {
-		name: food.name,
-		brand: food.brand ?? 'None',
-		store: food.store ?? 'None',
-		isSafe: food.isSafe,
-		comments: food.notes ?? 'None'
+		name: food.value.name,
+		brand: food.value.brand ?? 'None',
+		store: food.value.store ?? 'None',
+		isSafe: food.value.isSafe,
+		comments: food.value.notes ?? 'None'
 	}
 })
+
+const deleteFood = () => {
+	foodStore.deleteFood({foodId: id})
+	router.push('/')
+}
 </script>
