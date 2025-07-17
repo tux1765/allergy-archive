@@ -55,7 +55,8 @@ const props = defineProps({
 })
 
 const foodStore = useFoodStore()
-const food = foodStore.getFoodById(parseInt(props.id))
+const id = process.env.DEXIE_CLOUD ? props.id : parseInt(props.id)
+const food = foodStore.getFoodById(id)
 const foodItem = computed(() => {
 	return {
 		name: food.name,

@@ -13,6 +13,9 @@ export const useFoodStore = defineStore('foodStore', {
 		getAllFoodsSortedByIdDesc: (state) => {
 			return state.foods.sort((a, b) => b.id - a.id)
 		},
+		getAllFoodsSortedByDateDesc: (state) => {
+			return state.foods.sort((a, b) => b.dateAdded - a.dateAdded)
+		},
 		getFoodById: (state) => {
 			return (foodId) => state.foods.find(food => food.id === foodId)
 		}

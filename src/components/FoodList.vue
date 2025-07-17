@@ -1,7 +1,7 @@
 <template>
 	<q-list>
 		<div
-			v-for="food in foodStore.getAllFoodsSortedByIdDesc"
+			v-for="food in foodStore.getAllFoodsSortedByDateDesc"
 			:key="food.id"
 		>
 			<q-slide-item @right="deleteItem({id: food.id})" right-color="red">
