@@ -5,7 +5,7 @@ import {liveQuery} from 'dexie'
 export const useFoodStore = defineStore('foodStore', {
 	state: () => ({
 		foods: [],
-		user: null,
+		user: {},
 		dbSubscription: null,
 		userSubscription: null
 	}),
