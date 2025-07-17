@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "An app to help you track food and prevent allergic reactions",
   "productName": "Allergy Archive App",
-  "author": "Tony Palacios <tony@vidterra.com>",
+  "author": "Tony",
   "type": "module",
   "private": true,
   "scripts": {
