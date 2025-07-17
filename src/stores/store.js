@@ -5,14 +5,13 @@ import {liveQuery} from 'dexie'
 export const useFoodStore = defineStore('foodStore', {
 	state: () => ({
 		foods: [],
-		dbSubscription: null
+		user: null,
+		dbSubscription: null,
+		userSubscription: null
 	}),
 
 	getters: {
 		getAllFoods: (state) => state.foods,
-		getAllFoodsSortedByIdDesc: (state) => {
-			return state.foods.sort((a, b) => b.id - a.id)
-		},
 		getAllFoodsSortedByDateDesc: (state) => {
 			return state.foods.sort((a, b) => b.dateAdded - a.dateAdded)
 		},
@@ -36,6 +35,10 @@ export const useFoodStore = defineStore('foodStore', {
 			this.dbSubscription = foodQuery.subscribe({
 				next: data => {this.foods = data},
 				error: err => {console.error(`Error with loading the database.`, err)}
+			})
+			this.userSubscription = db.cloud.currentUser.subscribe({
+				next: data => {this.user = data},
+				error: err => {console.error(`Error with loading the user.`, err)}
 			})
 		}
 	}

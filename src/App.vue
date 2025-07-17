@@ -13,5 +13,6 @@ onBeforeMount(() => {
 
 onBeforeUnmount(() => {
 	foodStore.dbSubscription.unsubscribe()
+	foodStore.userSubscription.unsubscribe()
 })
 </script>

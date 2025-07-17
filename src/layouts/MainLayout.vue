@@ -16,6 +16,11 @@
 				<q-toolbar-title class="text-black">
 					Allergy Archive
 				</q-toolbar-title>
+				<q-btn
+					:label="foodStore.user.isLoggedIn ? 'Logout' : 'Login'"
+					flat
+					@click="foodStore.user.isLoggedIn ? handleLogout() : handleLogin()"
+				/>
 			</q-toolbar>
 		</q-header>
 
@@ -33,8 +38,12 @@
 </template>
 
 <script setup>
+import {db} from '@/db/db'
 import {ref} from 'vue'
 import {useRoute, useRouter} from 'vue-router'
+import {useFoodStore} from 'stores/store.js'
+
+const foodStore = useFoodStore()
 
 const route = useRoute()
 const router = useRouter()
@@ -43,5 +52,13 @@ const tab = ref('home')
 
 const navigateBack = () => {
 	router.go(-1)
+}
+
+const handleLogin = async () => {
+	await db.cloud.login()
+}
+
+const handleLogout = async () => {
+	await db.cloud.logout()
 }
 </script>
