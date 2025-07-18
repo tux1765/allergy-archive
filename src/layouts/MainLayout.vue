@@ -11,7 +11,9 @@
 					aria-label="Menu"
 					@click="navigateBack"
 				/>
-
+				<q-avatar>
+					<img src="icons/peanut640x640.png" />
+				</q-avatar>
 				<q-toolbar-title>
 					Allergy Archive
 				</q-toolbar-title>
@@ -22,14 +24,12 @@
 				/>
 			</q-toolbar>
 		</q-header>
-
 		<q-footer bordered>
 			<q-tabs v-model="tab" indicator-color="transparent">
 				<q-route-tab name="home" label="Home" icon="home" to="/" />
 				<q-route-tab name="add" label="Add Food" icon="add" to="/add"/>
 			</q-tabs>
 		</q-footer>
-
 		<q-page-container>
 			<q-page>
 				<slot></slot>
