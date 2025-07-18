@@ -1,6 +1,6 @@
 <template>
-	<q-layout view="lHh Lpr lFf" class="shadow-2 rounded-borders">
-		<q-header bordered class="bg-grey-3 text-black">
+	<q-layout view="lHh Lpr lFf" >
+		<q-header bordered>
 			<q-toolbar>
 				<q-btn
 					v-if="route.path !== '/'"
@@ -10,10 +10,9 @@
 					icon="arrow_back_ios"
 					aria-label="Menu"
 					@click="navigateBack"
-					class="text-black"
 				/>
 
-				<q-toolbar-title class="text-black">
+				<q-toolbar-title>
 					Allergy Archive
 				</q-toolbar-title>
 				<q-btn
@@ -24,7 +23,7 @@
 			</q-toolbar>
 		</q-header>
 
-		<q-footer bordered class="bg-grey-3 text-primary text-black">
+		<q-footer bordered>
 			<q-tabs v-model="tab" indicator-color="transparent">
 				<q-route-tab name="home" label="Home" icon="home" to="/" />
 				<q-route-tab name="add" label="Add Food" icon="add" to="/add"/>

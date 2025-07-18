@@ -11,9 +11,12 @@
 				>
 					<q-icon name="delete"/>
 				</template>
-				<q-item clickable :to="`/food/${food.id}`">
+				<q-item
+					clickable
+					:to="`/food/${food.id}`"
+				>
 					<q-item-section>
-						<q-item-label>{{food.name}}</q-item-label>
+						<q-item-label class="text-center">{{food.name}}</q-item-label>
 					</q-item-section>
 				</q-item>
 			</q-slide-item>
