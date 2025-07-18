@@ -1,13 +1,21 @@
 const routes = [
 	{
 		path: '/',
-		component: () => import('layouts/MainLayout.vue'),
-		children: [
-			{path: '', component: () => import('pages/IndexPage.vue')},
-			{path: '/add', component: () => import('pages/AddFood.vue')},
-			{path: '/edit/:id', component: () => import('@/pages/EditFood.vue'), props: true},
-			{path: '/food/:id', component: () => import('pages/FoodDisplay.vue'), props: true}
-		]
+		component: () => import('pages/IndexPage.vue'),
+	},
+	{
+		path: '/add',
+		component: () => import('pages/AddFood.vue'),
+	},
+	{
+		path: '/edit/:id',
+		component: () => import('pages/EditFood.vue'),
+		props: true
+	},
+	{
+		path: '/food/:id',
+		component: () => import('pages/FoodDisplay.vue'),
+		props: true
 	},
 
 	// Always leave this as last one,

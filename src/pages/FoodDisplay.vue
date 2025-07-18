@@ -1,8 +1,8 @@
 <template>
-	<q-page>
+	<MainLayout>
 		<q-card flat>
 			<q-card-section>
-				<div class="text-h6 text-center">{{foodItem.name}}</div>
+				<div class="text-h6 text-center">{{ foodItem.name }}</div>
 				<div
 					v-if="foodItem.isSafe === 'Safe'"
 					class="text-subtitle2 text-center text-green"
@@ -23,10 +23,10 @@
 				</div>
 			</q-card-section>
 			<q-card-section>
-				Brand: {{foodItem.brand}}
+				Brand: {{ foodItem.brand }}
 			</q-card-section>
 			<q-card-section>
-				Store: {{foodItem.store}}
+				Store: {{ foodItem.store }}
 			</q-card-section>
 			<q-card-section>
 				Comments:
@@ -48,10 +48,11 @@
 				</q-btn>
 			</q-card-actions>
 		</q-card>
-	</q-page>
+	</MainLayout>
 </template>
 
 <script setup>
+import MainLayout from 'layouts/MainLayout.vue'
 import {useFoodStore} from 'stores/store.js'
 import {useRouter} from 'vue-router'
 import {computed} from 'vue'
@@ -63,7 +64,8 @@ const props = defineProps({
 const foodStore = useFoodStore()
 const router = useRouter()
 
-const id = process.env.DEXIE_CLOUD ? props.id : parseInt(props.id) // we need to parse the numbers if not using cloud @ indexing
+// TODO: Remove this eventually. This was for non-cloud deployments
+const id = process.env.DEXIE_CLOUD_DISABLE ? parseInt(props.id) : props.id
 
 const food = computed(() => {
 	return foodStore.getFoodById(id)

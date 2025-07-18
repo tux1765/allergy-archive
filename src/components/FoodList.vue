@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import {useFoodStore} from '@/stores/store.js'
+import {useFoodStore} from 'stores/store.js'
 
 const foodStore = useFoodStore()
 

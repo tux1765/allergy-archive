@@ -32,7 +32,9 @@
 		</q-footer>
 
 		<q-page-container>
-			<router-view/>
+			<q-page>
+				<slot></slot>
+			</q-page>
 		</q-page-container>
 	</q-layout>
 </template>

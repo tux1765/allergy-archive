@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import {useFoodStore} from '@/stores/store.js'
+import {useFoodStore} from 'stores/store.js'
 import {onBeforeMount, onBeforeUnmount} from 'vue'
 
 const foodStore = useFoodStore()
