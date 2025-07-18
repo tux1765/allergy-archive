@@ -2,7 +2,7 @@
 	<MainLayout>
 		<FoodList v-if="foodStore.getAllFoods.length > 0"/>
 		<div v-else class="text-center">
-			Add Food items to get started!
+			Add Food items to get started, or login to access your synced items.
 		</div>
 	</MainLayout>
 </template>
