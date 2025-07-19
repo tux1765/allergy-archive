@@ -1,6 +1,6 @@
 <template>
 	<MainLayout>
-		<FoodForm :foodToEdit="foodToEdit" />
+		<FoodForm :foodToEdit="foodStore.getFoodById(props.id)" />
 	</MainLayout>
 </template>
 
@@ -14,5 +14,4 @@ const props = defineProps({
 })
 
 const foodStore = useFoodStore()
-const foodToEdit = foodStore.getFoodById(props.id)
 </script>

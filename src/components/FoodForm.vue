@@ -52,7 +52,7 @@
 
 <script setup>
 import {useFoodStore} from 'stores/store.js'
-import {onMounted, ref} from 'vue'
+import {ref, watchEffect} from 'vue'
 import {useQuasar} from 'quasar'
 
 const foodStore = useFoodStore()
@@ -73,9 +73,9 @@ const foodObj = ref({
 })
 const isSafeOptions = ['Safe', 'Unsafe', 'Unknown']
 
-onMounted(() => {
+watchEffect(() => {
 	if (props.foodToEdit) {
-		foodObj.value = {...props.foodToEdit}
+		foodObj.value = props.foodToEdit
 	}
 })
 
