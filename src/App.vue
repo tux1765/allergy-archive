@@ -1,18 +1,23 @@
 <template>
-  <router-view />
+  <router-view v-if="initialLoadingDone"/>
 </template>
 
 <script setup>
 import {useFoodStore} from 'stores/store.js'
 import {useQuasar} from 'quasar'
-import {onBeforeMount, onBeforeUnmount} from 'vue'
+import {ref, onBeforeMount, onBeforeUnmount, onMounted} from 'vue'
 
 const $q = useQuasar()
 const foodStore = useFoodStore()
 
 onBeforeMount(() => {
 	$q.dark.set(true)
-	foodStore.initDb()
+})
+
+const initialLoadingDone = ref(false)
+onMounted(async () => {
+	await foodStore.initDb()
+	initialLoadingDone.value = true
 })
 
 onBeforeUnmount(() => {

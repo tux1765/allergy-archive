@@ -30,7 +30,10 @@ export const useFoodStore = defineStore('foodStore', {
 		deleteFood({foodId}) {
 			return db.foods.where('id').equals(foodId).delete()
 		},
-		initDb() {
+		async initDb() {
+			this.foods = await db.foods.toArray()
+			this.user = await db.cloud.currentUser
+
 			const foodQuery = liveQuery(() => db.foods.toArray())
 			this.dbSubscription = foodQuery.subscribe({
 				next: data => {this.foods = data},
