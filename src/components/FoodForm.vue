@@ -41,9 +41,8 @@
 			<q-card-actions>
 				<q-space/>
 				<q-btn
-					label="Submit"
+					label="Add"
 					type="submit"
-					color="black"
 					flat
 				/>
 			</q-card-actions>
