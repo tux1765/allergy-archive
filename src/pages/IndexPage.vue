@@ -1,9 +1,6 @@
 <template>
 	<MainLayout>
-		<FoodList v-if="foodStore.getAllFoods.length > 0"/>
-		<div v-else class="text-center">
-			Add Food items to get started, or login to access your synced items.
-		</div>
+		<FoodList :foods="foods"/>
 	</MainLayout>
 </template>
 
@@ -11,6 +8,8 @@
 import MainLayout from 'layouts/MainLayout.vue'
 import FoodList from 'components/FoodList.vue'
 import {useFoodStore} from 'stores/store.js'
+import {computed} from 'vue'
 
 const foodStore = useFoodStore()
+const foods = computed(() => foodStore.getAllFoods)
 </script>
