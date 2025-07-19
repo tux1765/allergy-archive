@@ -1,5 +1,5 @@
 <template>
-	<q-form @submit="addFood">
+	<q-form @submit="editFood">
 		<q-card flat class="q-pa-md">
 			<q-card-section>
 				<q-input
@@ -42,39 +42,27 @@
 <script setup>
 import {useFoodStore} from 'stores/store.js'
 import {useQuasar} from 'quasar'
+import {defineProps} from 'vue'
 import {ref} from 'vue'
 
-const foodStore = useFoodStore()
 const $q = useQuasar()
+const foodStore = useFoodStore()
 
-const foodObj = ref({
-	name: null,
-	brand: null,
-	store: null,
-	notes: null,
-	isSafe: 'Unknown'
+const props = defineProps({
+	food: {}
 })
+
+const foodObj = ref({...props.food})
 const isSafeOptions = ['Safe', 'Unsafe', 'Unknown']
 
-const resetForm = () => {
-	foodObj.value = {
-		name: null,
-		brand: null,
-		store: null,
-		notes: null,
-		isSafe: 'Unknown'
-	}
-}
-
-const addFood = async () => {
+const editFood = async () => {
 	try {
-		const id = await foodStore.addFood({foodObj: {...foodObj.value, dateAdded: Date.now()}})
-		console.debug('Added food with id:', id)
+		await foodStore.foodToEdit({foodObj: {...foodObj.value}})
 		$q.notify({
 			color: 'green-4',
 			textColor: 'white',
 			icon: 'cloud_done',
-			message: `Added ${foodObj.value.name} to archive.`,
+			message: `Edited ${foodObj.value.name} in archive.`,
 			timeout: 1500,
 			position: 'center'
 		})
@@ -84,10 +72,8 @@ const addFood = async () => {
 			color: 'red-4',
 			textColor: 'white',
 			icon: 'cloud_done',
-			message: `Failed to add item`
+			message: `Failed to edit item`
 		})
 	}
-
-	resetForm()
 }
 </script>
