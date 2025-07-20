@@ -9,14 +9,14 @@
 		virtual-scroll
 		:pagination="pagination"
 		:rows-per-page-options="[0]"
-		hide-bottom
 		@row-click="onRowClick"
 		:filter="filter"
+		:hide-bottom="foods.length > 0"
 	>
 		<template v-slot:top-right>
 			<q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
 				<template v-slot:append>
-					<q-icon name="search" />
+					<q-icon name="search"/>
 				</template>
 			</q-input>
 		</template>
@@ -24,6 +24,13 @@
 			<q-td :props="props">
 				<q-badge :color="getSafetyColor(props.value)" :label="props.value"/>
 			</q-td>
+		</template>
+		<template #no-data="{ message }">
+			<div class="full-width row flex-center text-accent q-gutter-sm">
+				<span>
+					{{ message }}
+				</span>
+			</div>
 		</template>
 	</q-table>
 </template>
@@ -45,7 +52,7 @@ const onRowClick = (row, evt) => {
 	router.push(`/food/${evt.id}`)
 }
 
-const filter=ref('')
+const filter = ref('')
 
 const pagination = ref({
 	sortBy: 'date',
