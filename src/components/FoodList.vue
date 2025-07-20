@@ -5,7 +5,7 @@
 		:rows="foods"
 		row-key="name"
 		:columns="columns"
-		no-data-label="Add food to get started!"
+		no-data-label="Add food to get started, or login to sync across devices."
 		virtual-scroll
 		:pagination="pagination"
 		:rows-per-page-options="[0]"
